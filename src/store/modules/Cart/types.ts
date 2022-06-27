@@ -12,3 +12,8 @@ export interface actionUpdateCart {
   items: ICartItem[];
   totalPrice: number;
 }
+
+export interface IUpdateItemFromCart {
+  id: number;
+  quantity: number;
+}

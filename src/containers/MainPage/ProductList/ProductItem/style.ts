@@ -1,13 +1,17 @@
 import styled from "styled-components";
 import { variables } from "styles/Variables";
-import { btnReset } from "styles/ResetByClasses";
+import { btnReset, liReset } from "styles/ResetByClasses";
 
-const ProductItemWrapper = styled.div`
+const ProductItemWrapper = styled.li`
+  ${liReset};
   display: flex;
-  width: 33%;
-  margin: 15px;
+  width: 100%;
+  margin: 15px 0;
   padding: 15px;
-  background-color: ${variables.grey};
+  background-color: ${variables.white};
+  &:not(:last-of-type) {
+    border-bottom: 1px solid ${variables.grey};
+  }
 `;
 
 const ProductItemContent = styled.div`
@@ -18,13 +22,15 @@ const ProductItemContent = styled.div`
 `;
 
 const ProductItemTitle = styled.span`
-  font-size: 16px;
-  color: ${variables.orange};
+  font-size: 20px;
+  text-align: center;
+  color: ${variables.grey};
   margin-bottom: 15px;
 `;
 
 const ProductItemPrice = styled.span`
   margin-bottom: 15px;
+  font-size: 24px;
   color: ${variables.pink};
 `;
 

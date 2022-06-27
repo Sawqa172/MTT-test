@@ -16,7 +16,6 @@ import { useCartSlice } from "store/modules/Cart/hook";
 
 const CartItem = (props) => {
   const { title, price, id, quantity } = props.cartItem;
-  const [val, setVal] = useState(quantity);
 
   const dispatch = useDispatch();
   const { actions } = useCartSlice();
@@ -25,15 +24,23 @@ const CartItem = (props) => {
     dispatch(actions.removeCartItem(id));
   };
 
+  const updateItem = (id, quantity) => {
+    let updatedItem = {
+      id,
+      quantity,
+    };
+    dispatch(actions.updateItemFromCart(updatedItem));
+  };
+
   return (
     <CartItemWrapper>
       <CartTitle>{title}</CartTitle>
       <CartQuantity
-        defaultValue={val}
+        value={quantity}
         type="number"
-        onChange={(e) => setVal(e.target.value.replace(/[^0-9]/g, ""))}
+        onChange={(e) => updateItem(id, e.target.value)}
       />
-      <CartPrice> $ {price}</CartPrice>
+      <CartPrice> $ {quantity * price.toFixed(2)}</CartPrice>
       <CartDelete onClick={() => deleteItem(id)}>
         <CrossIcon />
       </CartDelete>

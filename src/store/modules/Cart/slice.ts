@@ -5,7 +5,8 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { calcTotalPrice } from "helpers/calcTotalPrice";
 
 //types
-import { actionUpdateCart } from "./types";
+import { actionUpdateCart, IUpdateItemFromCart } from "./types";
+import { ICartItem } from "../../../types/models/cart";
 
 // Creating slice with reducers
 const slice = createSlice({
@@ -13,11 +14,11 @@ const slice = createSlice({
   initialState,
   reducers: {
     //setCart
-    setCartTrigger(state, action: PayloadAction<string>) {
+    setCartItemTrigger(state, action: PayloadAction<ICartItem>) {
       state.done = true;
       state.loading = true;
     },
-    setCartSuccess(state, action) {
+    setCartItemSuccess(state, action) {
       const findItem = state.data.find((obj) => obj.id === action.payload.id);
       if (findItem) {
         findItem.quantity++;
@@ -26,12 +27,20 @@ const slice = createSlice({
       }
       state.totalPrice = calcTotalPrice(state.data);
       state.loading = false;
+      localStorage.setItem("cart", JSON.stringify(state.data));
     },
-    setCartFailed(state, action) {
+    updateItemFromCart(state, action: PayloadAction<IUpdateItemFromCart>) {
+      const findItem = state.data.find((obj) => obj.id === action.payload.id);
+      if (findItem) {
+        findItem.quantity = action.payload.quantity;
+      }
+      state.totalPrice = calcTotalPrice(state.data);
+    },
+    setCartItemFailed(state, action) {
       state.error = action.payload;
       state.loading = false;
     },
-    setCartFulfilled(state) {
+    setCartItemFulfilled(state) {
       state.loading = false;
       state.done = false;
     },
@@ -58,11 +67,17 @@ const slice = createSlice({
     //delete item & items
     removeCartItem(state, action: PayloadAction<number>) {
       state.data = state.data.filter((obj) => obj.id !== action.payload);
+      let localStorageData: any = localStorage.getItem("cart");
+      let filteredLSData = JSON.parse(localStorageData).filter(
+        (item) => item.id !== action.payload,
+      );
+      localStorage.setItem("cart", JSON.stringify(filteredLSData));
       state.totalPrice = calcTotalPrice(state.data);
     },
     clearCartItems(state) {
       state.data = [];
       state.totalPrice = 0;
+      localStorage.setItem("cart", "");
     },
   },
 });

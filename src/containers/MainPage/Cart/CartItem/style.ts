@@ -5,6 +5,7 @@ import { variables } from "styles/Variables";
 const CartItemWrapper = styled.li`
   width: 100%;
   display: flex;
+  align-items: center;
   padding: 10px 0;
   ${liReset};
   &:not(:last-of-type) {
@@ -17,15 +18,20 @@ const CartTitle = styled.span`
   font-size: 18px;
   font-weight: 500;
   color: ${variables.grey};
-  margin-right: 20px;
+  margin-right: 50px;
   width: 150px;
+  max-height: 55px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 `;
 
 const CartQuantity = styled.input`
   width: 30px;
   display: flex;
   text-align: center;
-  margin-left: auto;
   ${inputReset};
   border: 1px solid ${variables.grey};
   transition: 0.3s linear;

@@ -4,11 +4,11 @@ import { actions } from "./slice";
 //Cart
 export function* setCartSaga(that) {
   try {
-    yield put(actions.setCartSuccess(that.payload));
+    yield put(actions.setCartItemSuccess(that.payload));
   } catch (err) {
-    yield put(actions.setCartFailed(err));
+    yield put(actions.setCartItemFailed(err));
   } finally {
-    yield put(actions.setCartFulfilled());
+    yield put(actions.setCartItemFulfilled());
     // yield
   }
 }
@@ -29,6 +29,6 @@ export function* updateCartSaga(that) {
  * Root saga manages watcher lifecycle
  */
 export function* cartSaga() {
-  yield takeLatest(actions.setCartTrigger, setCartSaga);
+  yield takeLatest(actions.setCartItemTrigger, setCartSaga);
   yield takeLatest(actions.updateCartTrigger, updateCartSaga);
 }

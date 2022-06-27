@@ -17,6 +17,7 @@ import {
   CartDeleteAll,
   CartCheckout,
   CartCheckoutText,
+  EmptyCart,
 } from "./style";
 
 //components
@@ -50,10 +51,10 @@ const Cart = () => {
             )}
           </CartTop>
         ) : (
-          <p>Cart is Empty</p>
+          <EmptyCart>Cart is Empty</EmptyCart>
         )}
         <CartBottom>
-          <CartTotalPrice>$ {totalPrice}</CartTotalPrice>
+          <CartTotalPrice>$ {totalPrice.toFixed(2)}</CartTotalPrice>
           <CartDeleteAll onClick={deleteAllCartItems}>Clear</CartDeleteAll>
           <CartCheckout>
             <CartCheckoutText>Checkout</CartCheckoutText>

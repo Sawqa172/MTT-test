@@ -8,6 +8,7 @@ const CartWrapper = styled.div`
   margin: 0 auto;
   height: 100%;
   background-color: ${variables.white};
+  margin-bottom: 50px;
 `;
 
 const CartContent = styled.div`
@@ -21,6 +22,8 @@ const CartTop = styled.ul`
   display: flex;
   flex-direction: column;
   padding: 30px;
+  max-height: 320px;
+  overflow-y: auto;
   ${ulReset};
 `;
 
@@ -74,6 +77,11 @@ const CartCheckoutText = styled.span`
   margin-right: 10px;
 `;
 
+const EmptyCart = styled.span`
+  text-align: center;
+  font-size: 20px;
+`;
+
 export {
   CartWrapper,
   CartContent,
@@ -83,4 +91,5 @@ export {
   CartDeleteAll,
   CartCheckout,
   CartCheckoutText,
+  EmptyCart,
 };
