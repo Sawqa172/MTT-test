@@ -7,3 +7,8 @@ export interface CartState {
   error?: unknown | null;
   totalPrice: number;
 }
+
+export interface actionUpdateCart {
+  items: ICartItem[];
+  totalPrice: number;
+}
