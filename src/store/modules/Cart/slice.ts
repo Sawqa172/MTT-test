@@ -32,8 +32,9 @@ const slice = createSlice({
     updateItemFromCart(state, action: PayloadAction<IUpdateItemFromCart>) {
       const findItem = state.data.find((obj) => obj.id === action.payload.id);
       if (findItem) {
-        findItem.quantity = action.payload.quantity;
+        findItem.quantity = +action.payload.quantity;
       }
+      localStorage.setItem("cart", JSON.stringify(state.data));
       state.totalPrice = calcTotalPrice(state.data);
     },
     setCartItemFailed(state, action) {

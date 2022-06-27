@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 //style
 import {
@@ -32,15 +32,31 @@ const CartItem = (props) => {
     dispatch(actions.updateItemFromCart(updatedItem));
   };
 
+  let totalPriceEachItem = quantity * price;
+
+  const checkInputValue = (id, value) => {
+    if (value == 0 || !value) {
+      dispatch(actions.updateItemFromCart({ id, quantity: 1 }));
+    }
+  };
+
   return (
     <CartItemWrapper>
       <CartTitle>{title}</CartTitle>
       <CartQuantity
         value={quantity}
-        type="number"
+        type="text"
         onChange={(e) => updateItem(id, e.target.value)}
+        onKeyPress={(event) => {
+          if (!/[0-9]/.test(event.key)) {
+            event.preventDefault();
+          }
+        }}
+        onBlur={(e) => {
+          checkInputValue(id, e.target.value);
+        }}
       />
-      <CartPrice> $ {quantity * price.toFixed(2)}</CartPrice>
+      <CartPrice> $ {totalPriceEachItem.toFixed(2)}</CartPrice>
       <CartDelete onClick={() => deleteItem(id)}>
         <CrossIcon />
       </CartDelete>
