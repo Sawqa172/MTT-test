@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { useCartSlice } from "store/modules/Cart/hook";
 import { getCartFromLS } from "./helpers/getCartItemsFromLS";
 
+const MainPage = React.lazy(() => import("containers/MainPage"));
+
 function App() {
   const dispatch = useDispatch();
   const { actions } = useCartSlice();
@@ -22,6 +24,7 @@ function App() {
 
   return (
     <div className="App">
+      <MainPage />
       <GlobalStyle />
     </div>
   );

@@ -54,6 +54,16 @@ const slice = createSlice({
       state.loading = false;
       state.done = false;
     },
+
+    //delete item & items
+    removeCartItem(state, action: PayloadAction<number>) {
+      state.data = state.data.filter((obj) => obj.id !== action.payload);
+      state.totalPrice = calcTotalPrice(state.data);
+    },
+    clearCartItems(state) {
+      state.data = [];
+      state.totalPrice = 0;
+    },
   },
 });
 

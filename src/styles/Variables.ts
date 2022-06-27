@@ -4,4 +4,5 @@ export const variables = {
   white: "#ffffff",
   grey: "#b8b8b8",
   pink: "#ffc0cb",
+  lightBlue: "#35d0ff",
 };

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { variables } from "./Variables";
 
 /* istanbul ignore next */
 export const GlobalStyle = createGlobalStyle`
@@ -21,6 +22,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+    background-color: ${variables.grey};
   }
   
   img{
