@@ -50,7 +50,7 @@ const CartItem = (props) => {
   return (
     <CartItemWrapper>
       <CartTitle>{title}</CartTitle>
-      <CartButton onClick={() => minusQuantity(id)}>
+      <CartButton onClick={() => minusQuantity(id)} disabled={quantity === 1}>
         <CartButtonText>-</CartButtonText>
       </CartButton>
       <CartQuantity

@@ -57,6 +57,11 @@ const CartButton = styled.button`
   justify-content: center;
   border-radius: 100%;
   border: 1px solid ${(p) => p.theme.colors.grey};
+  transition: 0.3s linear;
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.4;
+  }
 `;
 
 const CartButtonText = styled.span`
