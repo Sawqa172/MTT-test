@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { Provider } from "react-redux";
 import { configureAppStore } from "store/configureStore";
+import { ThemeProvider } from "styles/Theme/ThemeProvider";
 
 const store = configureAppStore();
 
@@ -12,6 +13,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <App />
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   </Provider>,
 );

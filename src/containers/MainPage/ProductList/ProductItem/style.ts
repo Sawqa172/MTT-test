@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { variables } from "styles/Variables";
+
 import { btnReset, liReset } from "styles/ResetByClasses";
 
 const ProductItemWrapper = styled.li`
@@ -8,9 +8,9 @@ const ProductItemWrapper = styled.li`
   width: 100%;
   margin: 15px 0;
   padding: 15px;
-  background-color: ${variables.white};
+  background-color: ${(p) => p.theme.colors.white};
   &:not(:last-of-type) {
-    border-bottom: 1px solid ${variables.grey};
+    border-bottom: 1px solid ${(p) => p.theme.colors.grey};
   }
 `;
 
@@ -24,14 +24,14 @@ const ProductItemContent = styled.div`
 const ProductItemTitle = styled.span`
   font-size: 20px;
   text-align: center;
-  color: ${variables.grey};
+  color: ${(p) => p.theme.colors.grey};
   margin-bottom: 15px;
 `;
 
 const ProductItemPrice = styled.span`
   margin-bottom: 15px;
   font-size: 24px;
-  color: ${variables.pink};
+  color: ${(p) => p.theme.colors.pink};
 `;
 
 const ProductItemButton = styled.button`
@@ -40,12 +40,12 @@ const ProductItemButton = styled.button`
   height: 40px;
   font-size: 14px;
   border-radius: 4px;
-  background-color: ${variables.orange};
+  background-color: ${(p) => p.theme.colors.orange};
   display: flex;
   align-items: center;
   justify-content: center;
   &:hover {
-    background-color: ${variables.pink};
+    background-color: ${(p) => p.theme.colors.pink};
   }
 `;
 

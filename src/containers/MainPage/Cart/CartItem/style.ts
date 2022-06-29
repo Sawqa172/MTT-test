@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { btnReset, inputReset, liReset } from "styles/ResetByClasses";
-import { variables } from "styles/Variables";
 
 const CartItemWrapper = styled.li`
   width: 100%;
@@ -10,14 +9,14 @@ const CartItemWrapper = styled.li`
   ${liReset};
   &:not(:last-of-type) {
     margin-bottom: 10px;
-    border-bottom: 1px dashed ${variables.grey};
+    border-bottom: 1px dashed ${(p) => p.theme.colors.grey};
   }
 `;
 
 const CartTitle = styled.span`
   font-size: 18px;
   font-weight: 500;
-  color: ${variables.grey};
+  color: ${(p) => p.theme.colors.grey};
   margin-right: 50px;
   width: 150px;
   max-height: 55px;
@@ -33,7 +32,7 @@ const CartQuantity = styled.input`
   display: flex;
   text-align: center;
   ${inputReset};
-  border: 1px solid ${variables.grey};
+  border: 1px solid ${(p) => p.theme.colors.grey};
   transition: 0.3s linear;
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
@@ -44,13 +43,13 @@ const CartQuantity = styled.input`
     -moz-appearance: textfield;
   }
   &:focus {
-    box-shadow: 0 0 7px 1px ${variables.lightBlue};
+    box-shadow: 0 0 7px 1px ${(p) => p.theme.colors.lightBlue};
   }
 `;
 
 const CartPrice = styled.p`
   font-size: 20px;
-  color: ${variables.orange};
+  color: ${(p) => p.theme.colors.orange};
   margin-left: auto;
   font-weight: 700;
 `;
@@ -62,12 +61,12 @@ const CartDelete = styled.button`
   ${btnReset};
   margin-left: auto;
   svg {
-    color: ${variables.grey};
+    color: ${(p) => p.theme.colors.grey};
     transition: 0.3s linear;
   }
   &:hover {
     svg {
-      color: ${variables.orange};
+      color: ${(p) => p.theme.colors.orange};
     }
   }
 `;

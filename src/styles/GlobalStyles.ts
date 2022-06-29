@@ -1,5 +1,4 @@
-import { createGlobalStyle } from "styled-components";
-import { variables } from "./Variables";
+import { createGlobalStyle } from "styled-components/macro";
 
 /* istanbul ignore next */
 export const GlobalStyle = createGlobalStyle`
@@ -22,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    background-color: ${variables.grey};
+    background-color: ${(p) => p.theme.colors.grey};
   }
   
   img{

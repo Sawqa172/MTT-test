@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import { btnReset, ulReset } from "styles/ResetByClasses";
-import { variables } from "styles/Variables";
 
 const CartWrapper = styled.div`
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
   height: 100%;
-  background-color: ${variables.white};
+  background-color: ${(p) => p.theme.colors.white};
   margin-bottom: 50px;
 `;
 
@@ -30,26 +29,26 @@ const CartTop = styled.ul`
 const CartBottom = styled.div`
   width: 100%;
   padding: 30px;
-  border-top: 1px solid ${variables.black};
+  border-top: 1px solid ${(p) => p.theme.colors.black};
   display: flex;
   align-items: center;
 `;
 
 const CartTotalPrice = styled.p`
   font-size: 20px;
-  color: ${variables.grey};
+  color: ${(p) => p.theme.colors.grey};
 `;
 
 const CartDeleteAll = styled.button`
   ${btnReset};
   font-size: 17px;
-  color: ${variables.grey};
+  color: ${(p) => p.theme.colors.grey};
   margin-left: auto;
   margin-right: 15px;
   cursor: pointer;
   transition: 0.3s linear;
   &:hover {
-    color: ${variables.orange};
+    color: ${(p) => p.theme.colors.orange};
   }
 `;
 
@@ -60,9 +59,9 @@ const CartCheckout = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${variables.lightBlue};
+  background-color: ${(p) => p.theme.colors.lightBlue};
   svg {
-    color: ${variables.white};
+    color: ${(p) => p.theme.colors.white};
   }
   &:hover {
     svg {
@@ -73,7 +72,7 @@ const CartCheckout = styled.button`
 
 const CartCheckoutText = styled.span`
   font-size: 16px;
-  color: ${variables.white};
+  color: ${(p) => p.theme.colors.white};
   margin-right: 10px;
 `;
 
