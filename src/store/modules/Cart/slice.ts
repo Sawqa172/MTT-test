@@ -3,6 +3,7 @@ import { createSlice } from "utils/redux/toolkit";
 import { initialState } from "./state";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { calcTotalPrice } from "helpers/calcTotalPrice";
+import { findItemFromCart } from "helpers/findItemInCart";
 
 //types
 import { actionUpdateCart, IUpdateItemFromCart } from "./types";
@@ -19,23 +20,39 @@ const slice = createSlice({
       state.loading = true;
     },
     setCartItemSuccess(state, action) {
-      const findItem = state.data.find((obj) => obj.id === action.payload.id);
+      const findItem = findItemFromCart(state.data, action.payload.id);
       if (findItem) {
         findItem.quantity++;
       } else {
         state.data = [...state.data, action.payload];
       }
       state.totalPrice = calcTotalPrice(state.data);
-      state.loading = false;
       localStorage.setItem("cart", JSON.stringify(state.data));
     },
     updateItemFromCart(state, action: PayloadAction<IUpdateItemFromCart>) {
-      const findItem = state.data.find((obj) => obj.id === action.payload.id);
+      const findItem = findItemFromCart(state.data, action.payload.id);
       if (findItem) {
         findItem.quantity = +action.payload.quantity;
       }
       localStorage.setItem("cart", JSON.stringify(state.data));
       state.totalPrice = calcTotalPrice(state.data);
+    },
+    minusQuantityInCart(state, action) {
+      const findItem = findItemFromCart(state.data, action.payload);
+      if (findItem) {
+        findItem.quantity--;
+      }
+      state.totalPrice = calcTotalPrice(state.data);
+      localStorage.setItem("cart", JSON.stringify(state.data));
+    },
+    addQuantityInCart(state, action) {
+      const findItem = findItemFromCart(state.data, action.payload);
+      console.log(findItem);
+      if (findItem) {
+        findItem.quantity++;
+      }
+      state.totalPrice = calcTotalPrice(state.data);
+      localStorage.setItem("cart", JSON.stringify(state.data));
     },
     setCartItemFailed(state, action) {
       state.error = action.payload;

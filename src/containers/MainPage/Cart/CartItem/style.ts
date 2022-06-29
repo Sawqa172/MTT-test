@@ -34,6 +34,7 @@ const CartQuantity = styled.input`
   ${inputReset};
   border: 1px solid ${(p) => p.theme.colors.grey};
   transition: 0.3s linear;
+  margin: 0 10px;
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -45,6 +46,23 @@ const CartQuantity = styled.input`
   &:focus {
     box-shadow: 0 0 7px 1px ${(p) => p.theme.colors.lightBlue};
   }
+`;
+
+const CartButton = styled.button`
+  ${btnReset};
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  border: 1px solid ${(p) => p.theme.colors.grey};
+`;
+
+const CartButtonText = styled.span`
+  font-size: 16px;
+  font-weight: 700;
+  color: ${(p) => p.theme.colors.orange};
 `;
 
 const CartPrice = styled.p`
@@ -71,4 +89,12 @@ const CartDelete = styled.button`
   }
 `;
 
-export { CartItemWrapper, CartTitle, CartQuantity, CartPrice, CartDelete };
+export {
+  CartItemWrapper,
+  CartTitle,
+  CartButton,
+  CartButtonText,
+  CartQuantity,
+  CartPrice,
+  CartDelete,
+};

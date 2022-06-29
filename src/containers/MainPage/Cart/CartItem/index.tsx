@@ -4,6 +4,8 @@ import React from "react";
 import {
   CartItemWrapper,
   CartTitle,
+  CartButton,
+  CartButtonText,
   CartQuantity,
   CartPrice,
   CartDelete,
@@ -16,9 +18,10 @@ import { useCartSlice } from "store/modules/Cart/hook";
 
 const CartItem = (props) => {
   const { title, price, id, quantity } = props.cartItem;
-
   const dispatch = useDispatch();
   const { actions } = useCartSlice();
+  //totalPriceEachItem
+  let totalPriceEachItem = quantity * price;
 
   const deleteItem = (id) => {
     dispatch(actions.removeCartItem(id));
@@ -32,17 +35,24 @@ const CartItem = (props) => {
     dispatch(actions.updateItemFromCart(updatedItem));
   };
 
-  let totalPriceEachItem = quantity * price;
-
   const checkInputValue = (id, value) => {
     if (value == 0 || !value) {
       dispatch(actions.updateItemFromCart({ id, quantity: 1 }));
     }
   };
+  const addQuantity = (id) => {
+    dispatch(actions.addQuantityInCart(id));
+  };
+  const minusQuantity = (id) => {
+    dispatch(actions.minusQuantityInCart(id));
+  };
 
   return (
     <CartItemWrapper>
       <CartTitle>{title}</CartTitle>
+      <CartButton onClick={() => minusQuantity(id)}>
+        <CartButtonText>-</CartButtonText>
+      </CartButton>
       <CartQuantity
         value={quantity}
         type="text"
@@ -56,6 +66,9 @@ const CartItem = (props) => {
           checkInputValue(id, e.target.value);
         }}
       />
+      <CartButton onClick={() => addQuantity(id)}>
+        <CartButtonText>+</CartButtonText>
+      </CartButton>
       <CartPrice> $ {totalPriceEachItem.toFixed(2)}</CartPrice>
       <CartDelete onClick={() => deleteItem(id)}>
         <CrossIcon />
